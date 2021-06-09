@@ -16,7 +16,7 @@ const Movie = (props) => {
 			.delete(`http://localhost:5000/api/movies/${id}`)
 			.then((res) => {
 				// since the api return is the id of the deleted movie:
-				const moviesArray = [...props.movies];
+				const moviesArray = props.movies;
 				const index = moviesArray.findIndex((movie) => {
 					return movie.id === res.data;
 				});
