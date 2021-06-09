@@ -15,9 +15,16 @@ const Movie = (props) => {
 		axios
 			.delete(`http://localhost:5000/api/movies/${id}`)
 			.then((res) => {
-				props.setMovies(res.data);
-				console.log(res.data);
-				// push("/movies");
+				// since the api return is the id of the deleted movie:
+				const moviesArray = [...props.movies];
+				const index = moviesArray.findIndex((movie) => {
+					return movie.id === res.data;
+				});
+				if (index !== -1) {
+					moviesArray.splice(index, 1);
+					props.setMovies(moviesArray);
+				}
+				push("/movies");
 			})
 			.catch((err) => console.log(err));
 	};

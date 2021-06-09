@@ -26,9 +26,8 @@ const AddMovieForm = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post(`http://localhost:5000/api/movies/${id}`, movie)
+			.post(`http://localhost:5000/api/movies`, movie)
 			.then((res) => {
-				// the setMovies (global state) is the props passed from <Route> in App.js
 				props.setMovies(res.data);
 				push("movies");
 			})
